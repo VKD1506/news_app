@@ -20,6 +20,30 @@ pip install -r requirements.txt
 python web.py
 ```
 
+Deploy the Flask app
+
+This repository is ready to deploy on Render from GitHub.
+
+1. Push the latest code to GitHub.
+2. In Render, create a new `Web Service` from this repository.
+3. Render will detect `render.yaml` and use:
+   - build command: `pip install -r requirements.txt`
+   - start command: `gunicorn wsgi:app`
+4. Add these environment variables in Render:
+   - `NEWS_API_KEY` required
+   - `GROQ_API_KEY` optional
+5. After deploy, Render will give you a public HTTPS URL such as `https://your-news-app.onrender.com`.
+
+Use the Android app on any network
+
+Once the Flask app is hosted, open the Android app and set the server URL to your public Render URL, for example:
+
+```text
+https://your-news-app.onrender.com/
+```
+
+That URL will work from any network because the backend is no longer running only on your local Wi-Fi.
+
 Build a Windows .exe
 
 1. Make sure your `.env` file is present in the project folder.

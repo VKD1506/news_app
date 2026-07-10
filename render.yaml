@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: news-app
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app
+    autoDeploy: true
+    envVars:
+      - key: NEWS_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
