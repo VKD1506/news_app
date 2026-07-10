@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">News App</string>
+    <string name="missing_url_message">Enter a server URL to open your news app.</string>
+    <string name="load_error_message">Could not load the news app. Check your server URL and make sure your computer and phone are on the same Wi-Fi.</string>
+    <string name="server_url_label">Server URL</string>
+    <string name="server_url_hint">http://192.168.1.20:5000/</string>
+    <string name="save_and_open">Save and Open</string>
+    <string name="change_server">Change Server</string>
+    <string name="server_url_help">Use the local IP of your computer, for example http://192.168.1.20:5000/. GitHub can host the APK file, but not this Flask app backend.</string>
+    <string name="invalid_url_message">Enter a valid http:// or https:// URL.</string>
+</resources>

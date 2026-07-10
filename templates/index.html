@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>News App</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header>
+        <div class="brand">
+          <h1>News App</h1>
+          <p>Search news stories and get AI-backed authenticity feedback.</p>
+        </div>
+      </header>
+
+      <main>
+        <section class="search-panel">
+          <form method="get" action="/">
+            <label for="q">Search topic</label>
+            <div class="search-row">
+              <input id="q" name="q" type="search" placeholder="Enter a topic like technology or science" value="{{ query }}" />
+              <button type="submit">Search</button>
+            </div>
+          </form>
+
+          {% if error %}
+            <div class="alert alert-error">{{ error }}</div>
+          {% endif %}
+          {% if not show_authenticity %}
+            <div class="alert alert-warning">Authenticity checks are disabled because GROQ_API_KEY is not configured.</div>
+          {% endif %}
+        </section>
+
+        {% if results %}
+          <section class="results">
+            <h2>Top stories for "{{ query }}"</h2>
+            <div class="cards">
+              {% for article in results %}
+                <article class="card">
+                  <div class="card-header">
+                    <div>
+                      <h3>{{ article.title }}</h3>
+                      <p class="meta">{{ article.source }} {% if article.published %}• {{ article.published[:10] }}{% endif %}</p>
+                    </div>
+                    {% if article.authenticity is sameas true %}
+                      <span class="badge badge-good">Likely Real</span>
+                    {% elif article.authenticity is sameas false %}
+                      <span class="badge badge-bad">Likely Fake</span>
+                    {% else %}
+                      <span class="badge badge-neutral">Not checked</span>
+                    {% endif %}
+                  </div>
+
+                  <p>{{ article.description }}</p>
+
+                  <div class="card-footer">
+                    <div class="reason">AI reason: {{ article.reason or "No reason available." }}</div>
+                    {% if article.url %}
+                      <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">Read the full story</a>
+                    {% endif %}
+                  </div>
+                </article>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+      </main>
+
+      <footer>
+        <p>Keep your API keys in <code>.env</code>. Use NewsAPI for stories and GROQ AI for authenticity checks.</p>
+      </footer>
+    </div>
+  </body>
+</html>
