@@ -12,7 +12,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "NEWS_APP_URL", "\"\"")
+        buildConfigField("String", "NEWS_APP_URL", "\"https://news-app-312d.onrender.com/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
