@@ -44,6 +44,26 @@ https://your-news-app.onrender.com/
 
 That URL will work from any network because the backend is no longer running only on your local Wi-Fi.
 
+Deploy with Firebase
+
+Firebase Hosting alone cannot run this Flask backend. For Firebase, use Firebase Hosting in front of Cloud Run.
+
+This repository now includes a `Dockerfile` for Cloud Run.
+
+Typical Firebase path:
+
+1. Create a Firebase project.
+2. Deploy this Flask app to Cloud Run from the repo or from local source.
+3. In Firebase Hosting, connect your site to the Cloud Run service.
+4. Put the final public HTTPS URL into the Android app.
+
+At a high level, the Firebase docs for this setup are:
+
+- Firebase Hosting with Cloud Run
+- Cloud Run Python/Flask deployment
+
+Once the app is live on Firebase/Cloud Run, use the hosted HTTPS URL in the APK instead of a local Wi-Fi IP.
+
 Build a Windows .exe
 
 1. Make sure your `.env` file is present in the project folder.
